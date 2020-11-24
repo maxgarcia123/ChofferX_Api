@@ -24,7 +24,7 @@ class User extends Model {
 
     static associate(models) {
         this.hasMany(models.Card, { foreignKey: 'user_id', as: 'cards', onDelete: 'CASCADE' })
-       // this.hasOne(models.FinalDriver, { foreignKey: 'user_id', as: 'FinalDriver', onDelete: 'CASCADE' })
+        this.hasOne(models.FinalDriver, { foreignKey: 'user_id', as: 'FinalDriver', onDelete: 'CASCADE' })
     }
 }
 

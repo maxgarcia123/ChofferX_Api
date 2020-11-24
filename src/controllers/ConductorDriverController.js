@@ -9,7 +9,7 @@ module.exports = {
             }
         return res.json(Conductors);
     },
-    async get(req, res) {
+    async getConductor(req, res) {
         const { user_id } = req.params;
         const Conductors = await ConductorDriver.findByPk({where: {user_id},include:{model:User, as: 'user'}});
             if(!Conductors){

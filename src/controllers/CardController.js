@@ -5,14 +5,11 @@ module.exports = {
     async index(req, res) {
         const { user_id } = req.params;
 
-        const user = await User.findByPk(user_id)
+        const cards = await User.findByPk({where: {user_id},include:{model:User, as: 'user'}});
         if(!user){
             return res.status(404).send('user not found')
         }
 
-        const cards = await Card.findAll({
-            where: user_id
-        })
         if(!cards){
             return res.status(404).send("user has no card")
         }
@@ -24,7 +21,6 @@ module.exports = {
         const { due_date, final_number, cvv} = req.body;
 
         const user = await User.findByPk(user_id)
-        console.log('userrrrrrrrrrrrrrr', req.body)
         if(user){
             const card = await Card.create({  due_date, final_number, cvv, user_id });
             return res.json(card);

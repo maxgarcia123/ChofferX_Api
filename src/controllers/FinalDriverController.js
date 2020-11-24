@@ -12,6 +12,14 @@ module.exports = {
 
         return res.json(users);
     },
+    async getFinalDriver(req, res) {
+        const { user_id } = req.params;
+        const finalDriver = await FinalDriver.findByPk(user_id,{include:{model:User, as: 'user'}});
+            if(!finalDriver){
+                return res.status("404").send("Final not found");
+            }
+        return res.json(finalDriver);
+    },
     async store(req, res) {
         const { first_name, 
                 last_name, 

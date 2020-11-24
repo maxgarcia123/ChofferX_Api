@@ -12,7 +12,7 @@ class FinalDriver extends Model {
           vehicle_licensing:  DataTypes.BOOLEAN,        
         },{
             sequelize,
-            modelName: 'FinalDriver'
+            modelName: 'ConductorDriver'
         })
     }
 
